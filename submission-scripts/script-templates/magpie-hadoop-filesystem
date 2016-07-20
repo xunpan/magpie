@@ -26,8 +26,6 @@
 #
 #           User must set HADOOP_RAWNETWORKFS_PATH below.
 #
-@MODE_INTELLUSTRE@
-
 export HADOOP_FILESYSTEM_MODE=HADOOPFILESYSTEMMODE
 
 # HDFS Replication
@@ -92,8 +90,6 @@ export HADOOP_RAWNETWORKFS_PATH="RAWFSDIRPREFIX/rawnetworkfs/"
 # If not specified, defaults to 33554432
 #
 # export HADOOP_RAWNETWORKFS_BLOCKSIZE=33554432
-
-@CONFIG_INTELLUSTRE@
 
 # If you have a local SSD or NVRAM, performance may be better to store
 # intermediate data on it rather than Lustre or some other networked
