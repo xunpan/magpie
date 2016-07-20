@@ -8,7 +8,6 @@ source test-generate-functionality.sh
 source test-generate-hadoop.sh
 source test-generate-hbase.sh
 source test-generate-kafka.sh
-source test-generate-mahout.sh
 source test-generate-phoenix.sh
 source test-generate-pig.sh
 source test-generate-spark.sh
@@ -34,7 +33,6 @@ standardtests=y
 dependencytests=y
 hadooptests=y
 pigtests=y
-mahouttests=y
 hbasetests=y
 phoenixtests=y
 sparktests=y
@@ -50,7 +48,6 @@ cornercasetests=y
 functionalitytests=y
 hadoopversiontests=y
 pigversiontests=y
-mahoutversiontests=y
 hbaseversiontests=y
 phoenixversiontests=y
 sparkversiontests=y
@@ -93,12 +90,6 @@ pig_0_13_0=y
 pig_0_14_0=y
 pig_0_15_0=y
 pig_0_16_0=y
-mahout_0_11_0=y
-mahout_0_11_1=y
-mahout_0_11_2=y
-mahout_0_12_0=y
-mahout_0_12_1=y
-mahout_0_12_2=y
 hbase_0_98_3_hadoop2=y
 hbase_0_98_9_hadoop2=y
 hbase_0_99_0=y
@@ -219,12 +210,6 @@ then
     sed -i -e "s/KAFKA_DIR_PREFIX=\(.*\)/KAFKA_DIR_PREFIX=${kafkadirpathsubst}/" ${MAGPIE_SCRIPTS_HOME}/submission-scripts/script-templates/Makefile
 fi
 
-if [ "${MAHOUT_DIR_PATH}X" != "X" ]
-then
-    mahoutdirpathsubst=`echo ${MAHOUT_DIR_PATH} | sed "s/\\//\\\\\\\\\//g"`
-    sed -i -e "s/MAHOUT_DIR_PREFIX=\(.*\)/MAHOUT_DIR_PREFIX=${mahoutdirpathsubst}/" ${MAGPIE_SCRIPTS_HOME}/submission-scripts/script-templates/Makefile
-fi
-
 if [ "${PHOENIX_DIR_PATH}X" != "X" ]
 then
     phoenixdirpathsubst=`echo ${PHOENIX_DIR_PATH} | sed "s/\\//\\\\\\\\\//g"`
@@ -331,14 +316,6 @@ if [ "${pigtests}" == "y" ] && [ "${pigversiontests}" == "y" ]; then
         GeneratePigDependencyTests
     fi
 fi
-if [ "${mahouttests}" == "y" ] && [ "${mahoutversiontests}" == "y" ]; then
-    if [ "${standardtests}" == "y" ]; then
-        GenerateMahoutStandardTests
-    fi
-    if [ "${dependencytests}" == "y" ]; then
-        GenerateMahoutDependencyTests
-    fi
-fi
 if [ "${hbasetests}" == "y" ] && [ "${hbaseversiontests}" == "y" ]; then
     if [ "${standardtests}" == "y" ]; then
         GenerateHbaseStandardTests
@@ -422,7 +399,7 @@ then
     rm -f magpie.${submissiontype}*no-local-dir*
 fi
 
-for project in hadoop pig mahout hbase phoenix spark storm kafka zookeeper
+for project in hadoop pig hbase phoenix spark storm kafka zookeeper
 do
     versionsvariable="${project}_all_versions"
     for version in ${!versionsvariable}
@@ -435,7 +412,6 @@ done
 # e.g. like functionality tests of default tests
 GenerateHadoopPostProcessing
 GeneratePigPostProcessing
-GenerateMahoutPostProcessing
 GenerateHbasePostProcessing
 GeneratePhoenixPostProcessing
 GenerateSparkPostProcessing

@@ -12,10 +12,6 @@ __GenerateFunctionalityTests_LegacySubmissionType() {
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-run-testpig-functionality-legacysubmissiontype
     fi
 
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-legacysubmissiontype
-    fi
-
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-run-hbaseperformanceeval-functionality-legacysubmissiontype
     fi
@@ -69,11 +65,6 @@ __GenerateFunctionalityTests_BadJobNames() {
     if [ "${pigtests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-run-testpig-functionality-job-name-whitespace
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-run-testpig-functionality-job-name-dollarsign
-    fi
-
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-job-name-whitespace
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-job-name-dollarsign
     fi
 
     if [ "${hbasetests}" == "y" ]; then
@@ -142,11 +133,6 @@ __GenerateFunctionalityTests_AltConfFilesDir() {
         sed -i -e 's/# export PIG_CONF_FILES="\(.*\)"/export PIG_CONF_FILES="'"${magpiescriptshomesubst}"'\/conf\/"/' magpie.${submissiontype}-hadoop-and-pig-run-testpig-functionality-altconffilesdir
     fi
 
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-altconffilesdir
-        sed -i -e 's/# export HADOOP_CONF_FILES="\(.*\)"/export HADOOP_CONF_FILES="'"${magpiescriptshomesubst}"'\/conf\/"/' magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-altconffilesdir
-    fi
-
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-run-hbaseperformanceeval-functionality-altconffilesdir
         sed -i -e 's/# export HADOOP_CONF_FILES="\(.*\)"/export HADOOP_CONF_FILES="'"${magpiescriptshomesubst}"'\/conf\/"/' magpie.${submissiontype}-hbase-with-hdfs-run-hbaseperformanceeval-functionality-altconffilesdir
@@ -212,10 +198,6 @@ __GenerateFunctionalityTests_TestAll() {
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-run-hadoopterasort-run-testpig-functionality-testall
     fi
 
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-hadoopterasort-run-clustersyntheticcontrol-functionality-testall
-    fi
-
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-run-hbaseperformanceeval-run-zookeeperruok-functionality-testall
     fi
@@ -261,14 +243,6 @@ __GenerateFunctionalityTests_InteractiveMode() {
         sed -i \
             -e 's/export PIG_MODE="\(.*\)"/export PIG_MODE="interactive"/' \
             magpie.${submissiontype}-hadoop-and-pig-functionality-interactive-mode
-    fi
-
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-functionality-interactive-mode
-
-        sed -i \
-            -e 's/export MAHOUT_MODE="\(.*\)"/export MAHOUT_MODE="interactive"/' \
-            magpie.${submissiontype}-hadoop-and-mahout-functionality-interactive-mode
     fi
 
     if [ "${hbasetests}" == "y" ]; then
@@ -327,8 +301,6 @@ __GenerateFunctionalityTests_Setuponlymode() {
     fi
 
     # No Pig test, "setuponly" doesn't exist
-
-    # No Mahout test, "setuponly" doesn't exist
 
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-functionality-setuponly-mode
@@ -404,8 +376,6 @@ __GenerateFunctionalityTests_JobTimeout() {
 
     # No Pig test, "script" in Pig executes via a pig command
     
-    # No Mahout test, "script" in Mahout executes via a mahout command
-
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-functionality-jobtimeout
 
@@ -468,12 +438,6 @@ __GenerateFunctionalityTests_MagpieExports() {
         sed -i -e "s/FILENAMESEARCHREPLACEKEY/hadoop-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-pig-functionality-checkexports
         sed -i -e "s/FILENAMESEARCHREPLACEKEY/hdfs-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-pig-functionality-checkexports
         sed -i -e "s/FILENAMESEARCHREPLACEKEY/pig-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-pig-functionality-checkexports
-    fi
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-functionality-checkexports
-        sed -i -e "s/FILENAMESEARCHREPLACEKEY/hadoop-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-mahout-functionality-checkexports
-        sed -i -e "s/FILENAMESEARCHREPLACEKEY/hdfs-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-mahout-functionality-checkexports
-        sed -i -e "s/FILENAMESEARCHREPLACEKEY/mahout-FILENAMESEARCHREPLACEKEY/" magpie.${submissiontype}-hadoop-and-mahout-functionality-checkexports
     fi
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-functionality-checkexports
@@ -539,10 +503,6 @@ __GenerateFunctionalityTests_PrePostRunScripts() {
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-run-testpig-functionality-prepostrunscripts
     fi
 
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-run-clustersyntheticcontrol-functionality-prepostrunscripts
-    fi
-
     if [ "${hbasetests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hbase-with-hdfs magpie.${submissiontype}-hbase-with-hdfs-run-hbaseperformanceeval-functionality-prepostrunscripts
     fi
@@ -594,10 +554,6 @@ __GenerateFunctionalityTests_PreRunScriptError() {
 
     if [ "${pigtests}" == "y" ]; then
         cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-pig magpie.${submissiontype}-hadoop-and-pig-functionality-prerunscripterror
-    fi
-
-    if [ "${mahouttests}" == "y" ]; then
-        cp ../submission-scripts/script-${submissiontype}/magpie.${submissiontype}-hadoop-and-mahout magpie.${submissiontype}-hadoop-and-mahout-functionality-prerunscripterror
     fi
 
     if [ "${hbasetests}" == "y" ]; then
