@@ -11,7 +11,6 @@ scheduler/resource manager support for Slurm, Moab, Torque, and LSF.
 Some of the features presently supported:
 
 - Run jobs interactively or via scripts.
-- Run Mapreduce 1.0 or 2.0 jobs via Hadoop 1.0 or 2.0
 - Run against a number of filesystem options, such as HDFS, HDFS over
   Lustre, HDFS over a generic network filesystem, Lustre directly, or
   a generic network filesystem.
@@ -118,6 +117,7 @@ documentation.  If you are very interested in support in Magpie 2.0
 beyond an experimental nature, please submit a support request and we
 can reconsider adding it back in.
 
+   - Hadoop 1.X support
    - Tachyon
    - UDA/uda-plugin for Hadoop
    - HDFS Federation in Hadoop
