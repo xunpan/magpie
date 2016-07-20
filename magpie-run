@@ -35,7 +35,6 @@ source ${MAGPIE_SCRIPTS_HOME}/magpie/lib/magpie-lib-run
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-hadoop
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-hbase
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-kafka
-source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-mahout
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-pig
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-phoenix
 source ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-project-spark
@@ -113,8 +112,6 @@ Magpie_run_start_hadoop
 
 # After Hadoop setup, requires Hadoop
 Magpie_run_start_pig
-# After Hadoop setup, requires Hadoop
-Magpie_run_start_mahout
 
 # After Zookeeper setup, requires Zookeeper
 # Will set magpie_run_hbase_should_be_torndown & magpie_run_hbase_setup_successful appropriately
@@ -167,9 +164,6 @@ then
     elif [ "${MAGPIE_JOB_TYPE}" == "pig" ]
     then
         Magpie_run_pig
-    elif [ "${MAGPIE_JOB_TYPE}" == "mahout" ]
-    then
-        Magpie_run_mahout
     elif [ "${MAGPIE_JOB_TYPE}" == "hadoop" ]
     then
         Magpie_run_hadoop
