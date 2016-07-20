@@ -99,8 +99,6 @@ Mahout - 0.11.0+, 0.11.1+, 0.11.2+, 0.12.0+, 0.12.1+, 0.12.2
 Phoenix - 4.5.1-Hbase-1.1+, 4.5.2-HBase-1.1+, 4.6.0-Hbase-1.1+,
           4.7.0-Hbase-1.1
 
-UDA/uda-plugin - 3.3.2-0
-
 Kafka - 2.11-0.9.0.0
 
 Zeppelin - 0.5.6
@@ -121,6 +119,7 @@ beyond an experimental nature, please submit a support request and we
 can reconsider adding it back in.
 
    - Tachyon
+   - UDA/uda-plugin for Hadoop
    - HDFS Federation in Hadoop
    - IntelLustre option for a Hadoop Filesystem
    - MagpieNetworkFS option for a Hadoop Filesystem
