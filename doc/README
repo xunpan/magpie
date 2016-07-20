@@ -323,7 +323,7 @@ considered on the side of experimental.
 
   Packages: UDA/uda-plugin, Kafka, Zeppelin, Tachyon, Mahout
 
-  Features: HDFS Federation, MagpieNetworkFS, IntelLustre
+  Features: HDFS Federation, IntelLustre
 
 Documentation
 -------------
@@ -352,7 +352,6 @@ Documentation on some optional features:
 Documentation on some experimental features that range from
 sorta-supported to barely-supported:
 
-- Support MagpieNetworkFS - See README.magpienetworkfs
 - Support intellustre - See README.intellustre
 - Support HDFS federation - See README.hdfsfederation
 
