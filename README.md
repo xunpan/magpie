@@ -117,6 +117,17 @@ Tachyon - 0.6.0+, 0.6.1+ [TachyonNote]
       Tachyon & Spark may be needed depending on your environment.
       See README for more details
 
+Older Supported Packages & Features
+-----------------------------------
+
+Some packages and features were dropped in Magpie 2.0 due to lack of
+interest, the software becoming old/deprecated, and/or their initial
+experimental addition into Magpie.  If you are interested in them,
+please look at Magpie 1.X versions for supported versions and
+documentation.  If you are very interested in support in Magpie 2.0
+beyond an experimental nature, please submit a support request and we
+can reconsider adding it back in.
+
 Documentation
 -------------
 
