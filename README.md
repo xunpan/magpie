@@ -11,7 +11,6 @@ support for Slurm, Moab, Torque, and LSF.
 Some of the features presently supported:
 
 - Run jobs interactively or via scripts.
-- Run Mapreduce 1.0 or 2.0 jobs via Hadoop 1.0 or 2.0
 - Run against a number of filesystem options, such as HDFS, HDFS over
   Lustre, HDFS over a generic network filesystem, Lustre directly, or
   a generic network filesystem.
@@ -70,9 +69,9 @@ those versions.
 * + - Requires patch against binary distro's scripts, no re-compilation needed
 * ^ - Requires patch against source, requires re-compilation
 
-Hadoop - 1.2.1+, 2.1.0-beta+, 2.2.0+, 2.3.0+, 2.4.0+, 2.4.1+, 2.5.0+,
-         2.5.1+, 2.5.2+, 2.6.0+, 2.6.1+, 2.6.2+, 2.6.3+, 2.6.4+,
-         2.7.0+, 2.7.1+, 2.7.2+
+Hadoop - 2.1.0-beta+, 2.2.0+, 2.3.0+, 2.4.0+, 2.4.1+, 2.5.0+, 2.5.1+,
+         2.5.2+, 2.6.0+, 2.6.1+, 2.6.2+, 2.6.3+, 2.6.4+, 2.7.0+,
+         2.7.1+, 2.7.2+
 
 Spark - 0.9.1-bin-hadoop2+, 0.9.2-bin-hadoop2+, 1.0.0-bin-hadoop2^,
         1.1.0-bin-hadoop2.3+, 1.1.0-bin-hadoop2.4+,
@@ -138,6 +137,7 @@ documentation.  If you are very interested in support in Magpie 2.0
 beyond an experimental nature, please submit a support request and we
 can reconsider adding it back in.
 
+   - Hadoop 1.X support
    - Tachyon
    - UDA/uda-plugin for Hadoop
    - HDFS Federation in Hadoop
