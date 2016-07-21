@@ -1012,7 +1012,7 @@ then
             __test_spark_shutdown $file
         fi
 
-        if ! echo ${file} | grep -q "rawnetworkfs"
+        if echo ${file} | grep -q "withhdfs"
         then
             __test_hdfs_shutdown $file
         fi
