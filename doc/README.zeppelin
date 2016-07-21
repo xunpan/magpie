@@ -40,8 +40,6 @@ Instructions For Using Zeppelin
 
    MAGPIE_LOCAL_DIR : For scratch space files
 
-   MAGPIE_JOB_TYPE : This should be set to 'zeppelin'
-
    JAVA_HOME : B/c you need to ...
 
 3) Setup the essentials for Zeppelin.
@@ -55,9 +53,15 @@ Instructions For Using Zeppelin
    ZEPPELIN_LOCAL_DIR : A small place for conf files and log files local to
    each node.  Typically /tmp directory.
 
-4) Select how your job will run by setting ZEPPELIN_MODE.  
-   You may want to run with 'server' mode to play around and figure things
-   out.  In the job output you will see output similar to the following:
+4) Zeppelin requires Spark, so ensure Spark is configured and also in
+   your submission script.  See README.spark for setup instructions.
+
+5) Submit your job into the cluster by running "sbatch -k
+   ./magpie.sbatchfile" for Slurm, "msub ./magpie.msubfile" for
+   Moab, or "bsub < .magpie.lsffile" for LSF.
+   Add any other options you see fit.
+
+6) In the job output you will see output similar to the following:
 
    * To access Zeppelin's web interface, you'll want to navigate your browser to:
    *     http://some-node:18080 
@@ -89,14 +93,6 @@ Instructions For Using Zeppelin
    See below in "Zeppelin Exported Environment Variables", for
    information on Zeppelin specific exported environment variables that
    may be useful in scripts.
-
-5) Zeppelin requires Spark, so ensure Spark is configured and also in
-   your submission script.  See README.spark for setup instructions.
-
-6) Submit your job into the cluster by running "sbatch -k
-   ./magpie.sbatchfile" for Slurm, "msub ./magpie.msubfile" for
-   Moab, or "bsub < .magpie.lsffile" for LSF.
-   Add any other options you see fit.
 
 7) Look at your job output file to see your output.  There will also
    be some notes/instructions/tips in the output file for viewing the
