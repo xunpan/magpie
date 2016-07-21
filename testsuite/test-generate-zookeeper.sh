@@ -19,7 +19,7 @@ __GenerateZookeeperStandardTests_RUOK() {
 
     sed -i -e 's/export ZOOKEEPER_VERSION="\(.*\)"/export ZOOKEEPER_VERSION="'"${zookeeperversion}"'"/' magpie.${submissiontype}-zookeeper-${zookeeperversion}*
 
-    sed -i -e 's/export ZOOKEEPER_MODE="\(.*\)"/export ZOOKEEPER_MODE="zookeeperruok"/' magpie.${submissiontype}-zookeeper-${zookeeperversion}*
+    sed -i -e 's/export ZOOKEEPER_JOB="\(.*\)"/export ZOOKEEPER_JOB="zookeeperruok"/' magpie.${submissiontype}-zookeeper-${zookeeperversion}*
 
     sed -i -e 's/# export ZOOKEEPER_DATA_DIR_CLEAR="yes"/export ZOOKEEPER_DATA_DIR_CLEAR="yes"/' magpie.${submissiontype}-zookeeper-${zookeeperversion}*zookeeper-local*
 
