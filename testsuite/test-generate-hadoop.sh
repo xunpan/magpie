@@ -117,7 +117,7 @@ __GenerateHadoopDependencyTests_Dependency2_requiredecommissionhdfs() {
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop2A*hdfsovernetworkfs*
     
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="decommissionhdfsnodes"/' \
+        -e 's/export HADOOP_JOB="\(.*\)"/export HADOOP_JOB="decommissionhdfsnodes"/' \
         -e 's/# export HADOOP_DECOMMISSION_HDFS_NODE_SIZE=.*/export HADOOP_DECOMMISSION_HDFS_NODE_SIZE='"${basenodecount}"'/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop2A*decommissionhdfsnodes*
     
@@ -153,17 +153,17 @@ __GenerateHadoopDependencyTests_Dependency3_requiredecommissionhdfs() {
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop3A*hdfsovernetworkfs*
     
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="script"/' \
-        -e 's/# export HADOOP_SCRIPT_PATH="\(.*\)"/export HADOOP_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopteragen.sh"/' \
+        -e 's/export MAGPIE_JOB_TYPE="\(.*\)"/export MAGPIE_JOB_TYPE="script"/' \
+        -e 's/# export MAGPIE_SCRIPT_PATH="\(.*\)"/export MAGPIE_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopteragen.sh"/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop3A*scriptteragen*
 
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="script"/' \
-        -e 's/# export HADOOP_SCRIPT_PATH="\(.*\)"/export HADOOP_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopterasort.sh"/' \
+        -e 's/export MAGPIE_JOB_TYPE="\(.*\)"/export MAGPIE_JOB_TYPE="script"/' \
+        -e 's/# export MAGPIE_SCRIPT_PATH="\(.*\)"/export MAGPIE_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopterasort.sh"/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop3A*scriptterasort*
 
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="decommissionhdfsnodes"/' \
+        -e 's/export HADOOP_JOB="\(.*\)"/export HADOOP_JOB="decommissionhdfsnodes"/' \
         -e 's/# export HADOOP_DECOMMISSION_HDFS_NODE_SIZE=.*/export HADOOP_DECOMMISSION_HDFS_NODE_SIZE='"${basenodecount}"'/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop3A*decommissionhdfsnodes*
 
@@ -197,17 +197,17 @@ __GenerateHadoopDependencyTests_Dependency4_requiredecommissionhdfs() {
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop4A*hdfsovernetworkfs*
     
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="script"/' \
-        -e 's/# export HADOOP_SCRIPT_PATH="\(.*\)"/export HADOOP_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopteragen.sh"/' \
+        -e 's/export MAGPIE_JOB_TYPE="\(.*\)"/export MAGPIE_JOB_TYPE="script"/' \
+        -e 's/# export MAGPIE_SCRIPT_PATH="\(.*\)"/export MAGPIE_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopteragen.sh"/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop4A*scriptteragen*
 
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="script"/' \
-        -e 's/# export HADOOP_SCRIPT_PATH="\(.*\)"/export HADOOP_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopterasort.sh"/' \
+        -e 's/export MAGPIE_JOB_TYPE="\(.*\)"/export MAGPIE_JOB_TYPE="script"/' \
+        -e 's/# export MAGPIE_SCRIPT_PATH="\(.*\)"/export MAGPIE_SCRIPT_PATH="'"${magpiescriptshomesubst}"'\/testsuite\/testscripts\/test-hadoopterasort.sh"/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop4A*scriptterasort*
 
     sed -i \
-        -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="decommissionhdfsnodes"/' \
+        -e 's/export HADOOP_JOB="\(.*\)"/export HADOOP_JOB="decommissionhdfsnodes"/' \
         -e 's/# export HADOOP_DECOMMISSION_HDFS_NODE_SIZE=.*/export HADOOP_DECOMMISSION_HDFS_NODE_SIZE='"${basenodecount}"'/' \
         magpie.${submissiontype}-hadoop-${hadoopversion}-DependencyHadoop4A*decommissionhdfsnodes*
         
@@ -264,7 +264,7 @@ __GenerateHadoopDependencyTests_Dependency5 () {
             magpie.${submissiontype}-hadoop-${version}-DependencyHadoop${dependencynumber}*
 
         sed -i \
-            -e 's/export HADOOP_MODE="\(.*\)"/export HADOOP_MODE="upgradehdfs"/' \
+            -e 's/export HADOOP_JOB="\(.*\)"/export HADOOP_JOB="upgradehdfs"/' \
             magpie.${submissiontype}-hadoop-${version}-DependencyHadoop${dependencynumber}*run-hadoopupgradehdfs*
 
         # Returns 0 for ==, 1 for $1 > $2, 2 for $1 < $2
