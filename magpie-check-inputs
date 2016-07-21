@@ -204,7 +204,6 @@ if [ "${MAGPIE_JOB_TYPE}" != "hadoop" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "pig" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "spark" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "kafka" ] \
-    && [ "${MAGPIE_JOB_TYPE}" != "zeppelin" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "storm" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "zookeeper" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "testall" ] \
@@ -212,7 +211,7 @@ if [ "${MAGPIE_JOB_TYPE}" != "hadoop" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "interactive" ] \
     && [ "${MAGPIE_JOB_TYPE}" != "setuponly" ]
 then
-    echo "MAGPIE_JOB_TYPE must be set to hadoop, hbase, pig, phoenix, spark, kafka, zeppelin, storm, zookeeper, testall, script, interactive, or setuponly"
+    echo "MAGPIE_JOB_TYPE must be set to hadoop, hbase, pig, phoenix, spark, kafka, storm, zookeeper, testall, script, interactive, or setuponly"
     exit 1
 fi
 
@@ -297,7 +296,7 @@ fi
 
 # Did user turn on something matching job run type
 
-magpieprojects="HADOOP PIG HBASE PHOENIX SPARK KAFKA ZEPPELIN STORM ZOOKEEPER"
+magpieprojects="HADOOP PIG HBASE PHOENIX SPARK KAFKA STORM ZOOKEEPER"
 
 for project in ${magpieprojects}
 do
@@ -854,12 +853,6 @@ then
     __Magpie_check_must_be_set "ZEPPELIN_LOCAL_DIR" "to run Zeppelin"
 
     __Magpie_check_is_enabled "Spark" "Zeppelin"
-
-    if [ "${ZEPPELIN_MODE}" != "server" ]
-    then
-        echo "ZEPPELIN_MODE must be set to server"
-        exit 1
-    fi
 fi
 
 #

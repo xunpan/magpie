@@ -161,20 +161,6 @@ Magpie_run_start_zeppelin () {
     fi
 }
 
-Magpie_run_zeppelin () {
-    if [ "${ZEPPELIN_MODE}" == "server" ]
-    then
-        echo "*******************************************************"
-        echo "* Entering Zeppelin ${ZEPPELIN_MODE} mode"
-        echo "*******************************************************"
-        ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-execute server &
-        local scriptpid=$!
-        wait $scriptpid
-    else
-        Magpie_output_internal_error "ZEPPELIN_MODE = ${ZEPPELIN_MODE} not handled"
-    fi
-}
-
 Magpie_run_stop_zeppelin () {
     if [ "${magpie_run_spark_teardown_complete}" == "1" ]
     then

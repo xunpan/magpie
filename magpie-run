@@ -187,9 +187,6 @@ then
     elif [ "${MAGPIE_JOB_TYPE}" == "kafka" ]
     then
         Magpie_run_kafka
-    elif [ "${MAGPIE_JOB_TYPE}" == "zeppelin" ]
-    then
-        Magpie_run_zeppelin
     elif [ "${MAGPIE_JOB_TYPE}" == "storm" ]
     then
         Magpie_run_storm
