@@ -221,6 +221,15 @@ __SubmitCornerCaseTests_BadCoreSettings() {
     BasicJobSubmit magpie.${submissiontype}-zookeeper-cornercase-badcoresettings-3
 }
 
+__SubmitCornerCaseTests_RequireRawnetworkfs() {
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-requirerawnetworkfs-1
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-requirerawnetworkfs-2
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-requirerawnetworkfs-3
+    BasicJobSubmit magpie.${submissiontype}-spark-with-hdfs-cornercase-requirerawnetworkfs-1
+    BasicJobSubmit magpie.${submissiontype}-spark-with-hdfs-cornercase-requirerawnetworkfs-2
+    BasicJobSubmit magpie.${submissiontype}-spark-with-hdfs-cornercase-requirerawnetworkfs-3
+}
+
 __SubmitCornerCaseTests_RequireHDFS() {
     BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-requirehdfs-1
     BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-requirehdfs-2
@@ -296,6 +305,7 @@ SubmitCornerCaseTests() {
     __SubmitCornerCaseTests_BadCoreSettings
 
     __SubmitCornerCaseTests_RequireHDFS
+    __SubmitCornerCaseTests_RequireRawnetworkfs
     __SubmitCornerCaseTests_RequireYarn
 
     __SubmitCornerCaseTests_BadComboSettings
