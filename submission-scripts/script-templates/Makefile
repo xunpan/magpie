@@ -165,7 +165,7 @@ endef
 # Perhaps there is a niftier way to do this in sed than what I'm doing, glad
 # to take suggestions.  I couldn't figure out a way to do it in 1 pass.
 define common-addition
-	for project in hadoop hbase phoenix pig mahout spark kafka zeppelin storm zookeeper; do \
+	for project in hadoop hbase phoenix pig mahout spark kafka storm zookeeper; do \
 		if echo $(2) | grep -q $$project; then \
 			sed -i -e "/@MAGPIE_JOB_TYPES@/a @MAGPIE_JOB_TYPES_TEMP@/" $(1); \
 			sed -i -e "/@MAGPIE_JOB_TYPES@/{r magpie-magpie-customizations-job-$$project" -e "}" $(1); \

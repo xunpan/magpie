@@ -97,8 +97,6 @@ export MAGPIE_LOCAL_DIR="/tmp/${USER}/magpie"
 #
 # "kafka" - Run a job according to the settings of KAFKA_JOB.
 #
-# "zeppelin" - Run a job according to the settings of ZEPPELIN_MODE.
-#
 # "storm" - Run a job according to the settings of STORM_JOB.
 #
 # "zookeeper" - Run a job according to the settings of ZOOKEEPER_JOB.
@@ -1778,13 +1776,6 @@ export ZEPPELIN_LOCAL_DIR="/tmp/${USER}/zeppelin"
 # Spark has available, this can be changed by adjusting Spark submit options.
 # e.g. --total-executor-cores 20 --executor-memory 16G
 # ZEPPELIN_SPARK_SUBMIT_OPTIONS=""
-
-# Set how Zeppelin should run
-#
-# "server" - setup the server
-#
-export ZEPPELIN_MODE="server"
-
 ############################################################################
 # Storm Core Configurations
 ############################################################################
