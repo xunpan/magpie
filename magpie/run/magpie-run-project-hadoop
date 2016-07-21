@@ -177,7 +177,7 @@ Magpie_run_start_hadoop () {
                 # Make variables unspecified for shutdown
                 Magpie_make_all_local_dirs_unspecified
 
-                if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+                if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
                 then
                     ${hadoopsetupscriptprefix}/start-yarn.sh
                 fi
@@ -205,7 +205,7 @@ Magpie_run_start_hadoop () {
             echo "*"
             echo "* You can view your Hadoop status by launching a web browser and pointing to ..."
             echo "*"
-            if [ ${HADOOP_SETUP_TYPE}  == "MR2" ]
+            if [ "${HADOOP_SETUP_TYPE}"  == "MR" ]
             then
                 echo "* Yarn Resource Manager: http://${HADOOP_MASTER_NODE}:${default_yarn_resourcemanager_webapp_address}"
                 echo "*"
@@ -269,7 +269,7 @@ Magpie_run_start_hadoop () {
                 then
                     echo "*   $HADOOP_HOME/${hadoopsetupscriptprefix}/start-dfs.sh" 
                 fi
-                if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+                if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
                 then
                     echo "*   $HADOOP_HOME/${hadoopsetupscriptprefix}/start-yarn.sh"
                     echo "*   $HADOOP_HOME/${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh start historyserver"
@@ -278,7 +278,7 @@ Magpie_run_start_hadoop () {
                 echo "* To end/cleanup your session & kill all daemons, login and set"
                 echo "* environment variables per the instructions above, then run:"
                 echo "*" 
-                if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+                if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
                 then
                     echo "*   \$HADOOP_HOME/${hadoopsetupscriptprefix}/stop-yarn.sh"
                 fi
@@ -286,7 +286,7 @@ Magpie_run_start_hadoop () {
                 then
                     echo "*   \$HADOOP_HOME/${hadoopsetupscriptprefix}/stop-dfs.sh"
                 fi
-                if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+                if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
                 then
                     echo "*   \$HADOOP_HOME/${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh stop historyserver"
                 fi
@@ -380,7 +380,7 @@ Magpie_run_start_hadoop () {
         # write/create in HDFS
         if [ ${HADOOP_MODE} != "setuponly" ] && [ "${magpie_run_hadoop_setup_successful}" == "1" ]
         then
-            if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+            if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
             then
                 ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh start historyserver
             fi
@@ -501,7 +501,7 @@ Magpie_run_stop_hadoop () {
             # Make variables unspecified for shutdown
             Magpie_make_all_local_dirs_unspecified
 
-            if [ "${HADOOP_SETUP_TYPE}" == "MR2" ]
+            if [ "${HADOOP_SETUP_TYPE}" == "MR" ]
             then
                 ${hadoopsetupscriptprefix}/stop-yarn.sh
                 ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh stop historyserver
