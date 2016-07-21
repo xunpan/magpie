@@ -65,9 +65,5 @@ export ZEPPELIN_LOCAL_DIR="LOCALDIRPREFIX/zeppelin"
 #
 # "server" - setup the server
 #
-# "setuponly" - Like 'server' but only setup conf files. useful
-#               if user wants to setup & teardown daemons themselves.
-#
-#
 export ZEPPELIN_MODE="server"
 
