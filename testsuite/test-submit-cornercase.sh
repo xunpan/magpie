@@ -56,6 +56,15 @@ __SubmitCornerCaseTests_NoSetVersion() {
     BasicJobSubmit magpie.${submissiontype}-zookeeper-cornercase-nosetversion
 }
 
+__SubmitCornerCaseTests_BadVersion() {
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-1
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-2
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-3
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-4
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-5
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-badversion-6
+}
+
 __SubmitCornerCaseTests_NoSetHome() {
     BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-nosethome
     BasicJobSubmit magpie.${submissiontype}-hadoop-and-pig-cornercase-nosethome
@@ -288,6 +297,8 @@ SubmitCornerCaseTests() {
 
     __SubmitCornerCaseTests_BadSetJava
     __SubmitCornerCaseTests_NoSetVersion
+    __SubmitCornerCaseTests_BadVersion
+
     __SubmitCornerCaseTests_NoSetHome
     __SubmitCornerCaseTests_BadSetHome
     __SubmitCornerCaseTests_NoSetLocalDir
