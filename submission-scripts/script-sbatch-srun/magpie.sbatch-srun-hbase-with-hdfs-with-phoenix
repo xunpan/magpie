@@ -110,8 +110,6 @@ export MAGPIE_JOB_TYPE="phoenix"
 
 # Specify script(s) to execute for "script" mode in MAGPIE_JOB_TYPE
 #
-# Multiple scripts can be specified separated by comma.
-#
 # export MAGPIE_SCRIPT_PATH="${HOME}/my-job-script"
 
 # Specify arguments for script specified in MAGPIE_SCRIPT_PATH

@@ -55,7 +55,10 @@ o Remove experimental features and experimental/non-heavily used
   - 'IntelLustre' Filesystem
   - HDFS Federation
 
-Misc Changes
+Misc Features & Changes
+
+- MAGPIE_PRE_JOB_RUN and MAGPIE_POST_JOB_RUN can have multiple scripts
+  listed by comma.
 
 - Default HDFS namenode port is now 8020 instead of 54310
 
