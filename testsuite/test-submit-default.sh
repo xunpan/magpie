@@ -7,6 +7,8 @@ SubmitDefaultStandardTests() {
     BasicJobSubmit magpie.${submissiontype}-hadoop-default-run-hadoopterasort-no-local-dir
     BasicJobSubmit magpie.${submissiontype}-hadoop-and-pig-default-run-testpig
     BasicJobSubmit magpie.${submissiontype}-hadoop-and-pig-default-run-testpig-no-local-dir
+    BasicJobSubmit magpie.${submissiontype}-hadoop-and-mahout-default-run-clustersyntheticcontrol
+    BasicJobSubmit magpie.${submissiontype}-hadoop-and-mahout-default-run-clustersyntheticcontrol-no-local-dir
     BasicJobSubmit magpie.${submissiontype}-hbase-with-hdfs-default-run-hbaseperformanceeval
     BasicJobSubmit magpie.${submissiontype}-hbase-with-hdfs-default-run-hbaseperformanceeval-no-local-dir
     BasicJobSubmit magpie.${submissiontype}-hbase-with-hdfs-with-phoenix-default-run-phoenixperformanceeval
