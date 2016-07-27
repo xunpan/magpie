@@ -10,6 +10,7 @@
 #
 HADOOP_INCLUDE=y
 PIG_INCLUDE=y
+MAHOUT_INCLUDE=y
 HBASE_INCLUDE=y
 PHOENIX_INCLUDE=y
 SPARK_INCLUDE=y
@@ -38,6 +39,7 @@ PROJECT_DIR_PREFIX=$${HOME}
 HADOOP_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
 HBASE_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
 KAFKA_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
+MAHOUT_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
 PHOENIX_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
 PIG_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
 SPARK_DIR_PREFIX=$(PROJECT_DIR_PREFIX)
@@ -58,6 +60,7 @@ ZOOKEEPER_REPLICATION_COUNT=3
 #
 HADOOP_VERSION_DEFAULT=2.7.2
 PIG_VERSION_DEFAULT=0.16.0
+MAHOUT_VERSION_DEFAULT=0.12.2
 HBASE_VERSION_DEFAULT=1.2.2
 HBASE_ZOOKEEPER_VERSION_DEFAULT=3.4.8
 PHOENIX_VERSION_DEFAULT=4.7.0-HBase-1.1
@@ -128,6 +131,7 @@ define common-substitution
 	sed -i -e 's;HADOOPDIRPREFIX;$(HADOOP_DIR_PREFIX);g' $(1)
 	sed -i -e 's;HBASEDIRPREFIX;$(HBASE_DIR_PREFIX);g' $(1)
 	sed -i -e 's;KAFKADIRPREFIX;$(KAFKA_DIR_PREFIX);g' $(1)
+	sed -i -e 's;MAHOUTDIRPREFIX;$(MAHOUT_DIR_PREFIX);g' $(1)
 	sed -i -e 's;PHOENIXDIRPREFIX;$(PHOENIX_DIR_PREFIX);g' $(1)
 	sed -i -e 's;PIGDIRPREFIX;$(PIG_DIR_PREFIX);g' $(1)
 	sed -i -e 's;SPARKDIRPREFIX;$(SPARK_DIR_PREFIX);g' $(1)
@@ -137,6 +141,7 @@ define common-substitution
 
 	sed -i -e 's;HADOOPVERSIONDEFAULT;$(HADOOP_VERSION_DEFAULT);g' $(1)
 	sed -i -e 's;PIGVERSIONDEFAULT;$(PIG_VERSION_DEFAULT);g' $(1)
+	sed -i -e 's;MAHOUTVERSIONDEFAULT;$(MAHOUT_VERSION_DEFAULT);g' $(1)
 	sed -i -e 's;HBASEVERSIONDEFAULT;$(HBASE_VERSION_DEFAULT);g' $(1)
 	sed -i -e 's;PHOENIXVERSIONDEFAULT;$(PHOENIX_VERSION_DEFAULT);g' $(1)
 	sed -i -e 's;SPARKVERSIONDEFAULT;$(SPARK_VERSION_DEFAULT);g' $(1)
@@ -160,7 +165,7 @@ endef
 # Perhaps there is a niftier way to do this in sed than what I'm doing, glad
 # to take suggestions.  I couldn't figure out a way to do it in 1 pass.
 define common-addition
-	for project in hadoop hbase phoenix pig spark kafka storm zookeeper; do \
+	for project in hadoop hbase phoenix pig mahout spark kafka storm zookeeper; do \
 		if echo $(2) | grep -q $$project; then \
 			sed -i -e "/@MAGPIE_JOB_TYPES@/a @MAGPIE_JOB_TYPES_TEMP@/" $(1); \
 			sed -i -e "/@MAGPIE_JOB_TYPES@/{r magpie-magpie-customizations-job-$$project" -e "}" $(1); \
@@ -231,6 +236,7 @@ define create-templates
 	$(eval MAGPIE := ../script-$(SCHED)/magpie.$(SCHED))
 	$(eval MAGPIE_HADOOP := ../script-$(SCHED)/magpie.$(SCHED)-hadoop)
 	$(eval MAGPIE_HADOOP_AND_PIG := ../script-$(SCHED)/magpie.$(SCHED)-hadoop-and-pig)
+	$(eval MAGPIE_HADOOP_AND_MAHOUT := ../script-$(SCHED)/magpie.$(SCHED)-hadoop-and-mahout)
 	$(eval MAGPIE_HBASE_WITH_HDFS := ../script-$(SCHED)/magpie.$(SCHED)-hbase-with-hdfs)
 	$(eval MAGPIE_HBASE_WITH_HDFS_WITH_PHOENIX := ../script-$(SCHED)/magpie.$(SCHED)-hbase-with-hdfs-with-phoenix)
 	$(eval MAGPIE_SPARK := ../script-$(SCHED)/magpie.$(SCHED)-spark)
@@ -243,6 +249,7 @@ define create-templates
 	$(call create-all)
 	$(if $(findstring "${HADOOP_INCLUDE}", "y"), $(call create-hadoop))
 	$(if $(findstring "${HADOOP_INCLUDE}${PIG_INCLUDE}", "yy"), $(call create-hadoop-and-pig))
+	$(if $(findstring "${HADOOP_INCLUDE}${MAHOUT_INCLUDE}", "yy"), $(call create-hadoop-and-mahout))
 	$(if $(findstring "${HADOOP_INCLUDE}${HBASE_INCLUDE}${ZOOKEEPER_INCLUDE}", "yyy"), $(call create-hbase-with-hdfs))
 	$(if $(findstring "${HADOOP_INCLUDE}${HBASE_INCLUDE}${PHOENIX_INCLUDE}${ZOOKEEPER_INCLUDE}", "yyyy"), $(call create-hbase-with-hdfs-with-phoenix))
 	$(if $(findstring "${SPARK_INCLUDE}", "y"), $(call create-spark))
@@ -268,6 +275,10 @@ define create-all
 
 		if test "${PIG_INCLUDE}" = "y"; then \
 			cat magpie-pig >> $(MAGPIE); \
+		fi
+
+		if test "${MAHOUT_INCLUDE}" = "y"; then \
+			cat magpie-mahout >> $(MAGPIE); \
 		fi
 
 		if test "${HBASE_INCLUDE}" = "y"; then \
@@ -305,6 +316,7 @@ define create-all
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${HBASE_INCLUDE}", "y"), "hbase"))
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${PHOENIX_INCLUDE}", "y"), "phoenix"))
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${PIG_INCLUDE}", "y"), "pig"))
+	$(call common-addition, ${MAGPIE}, $(if $(findstring "${MAHOUT_INCLUDE}", "y"), "mahout"))
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${SPARK_INCLUDE}", "y"), "spark"))
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${KAFKA_INCLUDE}", "y"), "kafka"))
 	$(call common-addition, ${MAGPIE}, $(if $(findstring "${ZEPPELIN_INCLUDE}", "y"), "zeppelin"))
@@ -347,6 +359,25 @@ define create-hadoop-and-pig
 	sed -i -e "s/MAGPIE_JOB_TYPE=\"\(.*\)\"/MAGPIE_JOB_TYPE=\"pig\"/" $(MAGPIE_HADOOP_AND_PIG)
 	sed -i -e "s/HADOOP_SETUP=.*/HADOOP_SETUP=yes/" $(MAGPIE_HADOOP_AND_PIG)
 	sed -i -e "s/PIG_SETUP=.*/PIG_SETUP=yes/" $(MAGPIE_HADOOP_AND_PIG)
+endef
+
+define create-hadoop-and-mahout
+	echo "Creating magpie.$(SCHED)-hadoop-and-mahout"
+	cat 	magpie-header \
+		magpie-config-$(SCHED) \
+		magpie-magpie-customizations-substitution \
+		magpie-general-configuration \
+		magpie-hadoop-core \
+		magpie-hadoop-job \
+		magpie-hadoop-filesystem-substitution \
+		magpie-mahout \
+		magpie-run-job-header-substitution \
+		magpie-run-job-$(DIST) > $(MAGPIE_HADOOP_AND_MAHOUT)
+	$(call common-substitution, ${MAGPIE_HADOOP_AND_MAHOUT})
+	$(call common-additions, ${MAGPIE_HADOOP_AND_MAHOUT}, hadoop mahout)
+	sed -i -e "s/MAGPIE_JOB_TYPE=\"\(.*\)\"/MAGPIE_JOB_TYPE=\"mahout\"/" $(MAGPIE_HADOOP_AND_MAHOUT)
+	sed -i -e "s/HADOOP_SETUP=.*/HADOOP_SETUP=yes/" $(MAGPIE_HADOOP_AND_MAHOUT)
+	sed -i -e "s/MAHOUT_SETUP=.*/MAHOUT_SETUP=yes/" $(MAGPIE_HADOOP_AND_MAHOUT)
 endef
 
 define create-hbase-with-hdfs

@@ -6,6 +6,7 @@ source test-submit-functionality.sh
 source test-submit-hadoop.sh
 source test-submit-hbase.sh
 source test-submit-kafka.sh
+source test-submit-mahout.sh
 source test-submit-phoenix.sh
 source test-submit-pig.sh
 source test-submit-spark.sh
@@ -139,6 +140,9 @@ SubmitHadoopDependencyTests
 
 SubmitPigStandardTests
 SubmitPigDependencyTests
+
+SubmitMahoutStandardTests
+SubmitMahoutDependencyTests
 
 SubmitHbaseStandardTests
 SubmitHbaseDependencyTests
