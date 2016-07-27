@@ -36,6 +36,9 @@ O "MODE" variables (e.g. HADOOP_MODE, SPARK_MODE, etc.) are now named
   - As a consequence for Phoenix the "server" option for PHOENIX_MODE
     is now the configuration variable PHOENIX_START_QUERYSERVER.
 
+o SPARK_USE_YARN has been removed and replaced with SPARK_SETUP_TYPE
+  with settings options of "STANDALONE" or "YARN".
+
 o Remove experimental features and experimental/non-heavily used
   projects.  If you wish for these features to be brought back beyond
   an 'experimental' nature, please submit an issue request.  Features
