@@ -17,6 +17,7 @@
 HADOOP_DOWNLOAD="N"
 HBASE_DOWNLOAD="N"
 PIG_DOWNLOAD="N"
+MAHOUT_DOWNLOAD="N"
 ZOOKEEPER_DOWNLOAD="N"
 SPARK_DOWNLOAD="N"
 STORM_DOWNLOAD="N"
@@ -60,6 +61,7 @@ PRESET_LAUNCH_SCRIPT_CONFIGS="N"
 HADOOP_PACKAGE="hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz"
 HBASE_PACKAGE="hbase/1.2.2/hbase-1.2.2-bin.tar.gz"
 PIG_PACKAGE="pig/pig-0.16.0/pig-0.16.0.tar.gz"
+MAHOUT_PACKAGE="mahout/0.12.2/apache-mahout-distribution-0.12.1.tar.gz"
 ZOOKEEPER_PACKAGE="zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz"
 SPARK_PACKAGE="spark/spark-1.6.2/spark-1.6.2-bin-hadoop2.6.tgz"
 SPARK_HADOOP_PACKAGE="hadoop/common/hadoop-2.6.4/hadoop-2.6.4.tar.gz"
@@ -157,6 +159,15 @@ then
     __download_package "${PIG_PACKAGE}"
 
     # No pig patches at the moment
+fi
+
+if [ "${MAHOUT_DOWNLOAD}" == "Y" ]
+then
+    __download_package "${MAHOUT_PACKAGE}"
+
+    MAHOUT_PACKAGE_BASEDIR=$(echo `basename ${MAHOUT_PACKAGE}` | sed 's/\(.*\)\.\(.*\)\.\(.*\)/\1/g')
+    __apply_patches_if_exist ${MAHOUT_PACKAGE_BASEDIR} \
+        ${MAGPIE_SCRIPTS_HOME}/patches/mahout/${MAHOUT_PACKAGE_BASEDIR}.patch
 fi
 
 if [ "${ZOOKEEPER_DOWNLOAD}" == "Y" ]

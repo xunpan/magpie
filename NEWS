@@ -42,7 +42,6 @@ o Remove experimental features and experimental/non-heavily used
   & projects listed below.
 
   - Hadoop 1.X versions
-  - Mahout
   - Tachyon
   - UDA
   - 'MagpieNetworkFS' Filesystem

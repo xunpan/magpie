@@ -22,61 +22,15 @@
 #  along with Magpie.  If not, see <http://www.gnu.org/licenses/>.
 #############################################################################
 
-# Various path constants that we want set
-#
-# This is used by scripts, don't edit this
+# This script sets up configuration files for jobs.  For the most
+# part, it shouldn't be editted.  See job submission files for
+# configuration details.
 
-if [ "${HADOOP_SETUP}" == "yes" ]
+if [ "${MAHOUT_SETUP}" != "yes" ]
 then
-    hadoopsetupscriptprefix="sbin"
-    hadoopcmdprefix="bin"
-    dfsadminscript="hdfs"
+    exit 0
 fi
 
-if [ "${PIG_SETUP}" == "yes" ]
-then
-    pigcmdprefix="bin"
-fi
+# achu: nothing to config or setup right now, maybe later
 
-if [ "${MAHOUT_SETUP}" == "yes" ]
-then
-    mahoutexamplesprefix="examples"
-    mahoutcmdprefix="bin"
-fi
-
-if [ "${HBASE_SETUP}" == "yes" ]
-then
-    hbasesetupscriptprefix="bin"
-    hbasecmdprefix="bin"
-fi
-
-if [ "${PHOENIX_SETUP}" == "yes" ]
-then
-    phoenixcmdprefix="bin"
-fi
-
-if [ "${SPARK_SETUP}" == "yes" ]
-then
-    sparksetupscriptprefix="sbin"
-    sparkcmdprefix="bin"
-fi
-
-if [ "${KAFKA_SETUP}" == "yes" ]
-then
-    kafkacmdprefix="bin"
-fi
-
-if [ "${ZEPPELIN_SETUP}" == "yes" ]
-then
-    zeppelincmdprefix="bin"
-fi
-
-if [ "${STORM_SETUP}" == "yes" ]
-then
-    stormcmdprefix="bin"
-fi
-
-if [ "${ZOOKEEPER_SETUP}" == "yes" ]
-then
-    zookeepercmdprefix="bin"
-fi
+exit 0

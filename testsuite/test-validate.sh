@@ -667,6 +667,12 @@ then
             __check_exports_pig ${file}
         fi
         
+        if echo ${file} | grep -q "mahout"
+        then
+            # None guaranted to user at moment 
+            :
+        fi
+
         if echo ${file} | grep -q "hbase"
         then
             __check_exports_hbase ${file}
@@ -770,8 +776,17 @@ then
     for file in ${test_validate_files}
     do
         num=`grep -e "completed successfully" $file | wc -l`
-        if [ "${num}" != "2" ]; then
-            echo "Error in $file"
+        if echo ${file} | grep -q "run-clustersyntheticcontrol"
+        then
+            # runs clustering algorithm, can be random-ish, we'll
+            # guess it always takes atleast 5 iters
+            if [ "${num}" -lt "7" ]; then
+                echo "Error in $file"
+            fi
+        else
+            if [ "${num}" != "2" ]; then
+                echo "Error in $file"
+            fi
         fi
         
         __test_hadoop_shutdown $file
@@ -939,6 +954,23 @@ then
         
         num=`grep -e "1,2,3" $file | wc -l`
         if [ "${num}" != "2" ]; then
+            echo "Error in $file"
+        fi
+        
+        __test_hadoop_shutdown $file
+
+        __test_generic $file
+        __test_output_finalize $file
+    done
+fi
+
+__get_test_files run-clustersyntheticcontrol
+if [ $? -eq 0 ]
+then
+    for file in ${test_validate_files}
+    do
+        num=`grep -e "Dumping out clusters from clusters" $file | wc -l`
+        if [ "${num}" != "1" ]; then
             echo "Error in $file"
         fi
         
