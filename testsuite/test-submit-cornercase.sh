@@ -306,6 +306,27 @@ __SubmitCornerCaseTests_BadDirectories() {
     BasicJobSubmit magpie.${submissiontype}-zookeeper-cornercase-baddirectories
 }
 
+__SubmitCornerCaseTests_NoLongerSupported() {
+    BasicJobSubmit magpie.${submissiontype}-magpie-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-magpie-cornercase-nolongersupported-2
+    BasicJobSubmit magpie.${submissiontype}-magpie-cornercase-nolongersupported-3
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-nolongersupported-2
+    BasicJobSubmit magpie.${submissiontype}-hadoop-cornercase-nolongersupported-3
+    BasicJobSubmit magpie.${submissiontype}-hadoop-and-pig-cornercase-nolongersupported
+    BasicJobSubmit magpie.${submissiontype}-hadoop-and-mahout-cornercase-nolongersupported
+    BasicJobSubmit magpie.${submissiontype}-hbase-with-hdfs-cornercase-nolongersupported
+    BasicJobSubmit magpie.${submissiontype}-hbase-with-hdfs-with-phoenix-cornercase-nolongersupported
+    BasicJobSubmit magpie.${submissiontype}-spark-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-spark-with-hdfs-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-spark-with-yarn-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-spark-with-yarn-and-hdfs-cornercase-nolongersupported-1
+    BasicJobSubmit magpie.${submissiontype}-spark-with-yarn-cornercase-nolongersupported-2
+    BasicJobSubmit magpie.${submissiontype}-spark-with-yarn-and-hdfs-cornercase-nolongersupported-2
+    BasicJobSubmit magpie.${submissiontype}-storm-cornercase-nolongersupported
+    BasicJobSubmit magpie.${submissiontype}-zookeeper-cornercase-nolongersupported
+}
+
 SubmitCornerCaseTests() {
     __SubmitCornerCaseTests_CatchProjectDependencies
 
@@ -348,4 +369,6 @@ SubmitCornerCaseTests() {
     __SubmitCornerCaseTests_BadComboSettings
 
     __SubmitCornerCaseTests_BadDirectories
+
+    __SubmitCornerCaseTests_NoLongerSupported
 }
