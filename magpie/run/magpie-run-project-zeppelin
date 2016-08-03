@@ -162,16 +162,16 @@ Magpie_run_start_zeppelin () {
 }
 
 Magpie_run_zeppelin () {
-    if [ "${ZEPPELIN_MODE}" == "server" ]
+    if [ "${ZEPPELIN_JOB}" == "XXXtestzeppelinXXX" ]
     then
         echo "*******************************************************"
-        echo "* Entering Zeppelin ${ZEPPELIN_MODE} mode"
+        echo "* Running XXXTestZeppelinXXX"
         echo "*******************************************************"
-        ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-execute server &
+        ${MAGPIE_SCRIPTS_HOME}/magpie/run/magpie-run-execute script ${MAGPIE_SCRIPTS_HOME}/magpie/job/magpie-job-zeppelin-XXXtestzeppelinXXX &
         local scriptpid=$!
-        wait $scriptpid
+        Magpie_wait_script_sigusr2_on_job_timeout ${scriptpid}
     else
-        Magpie_output_internal_error "ZEPPELIN_MODE = ${ZEPPELIN_MODE} not handled"
+        Magpie_output_internal_error "ZEPPELIN_JOB = ${ZEPPELIN_JOB} not handled"
     fi
 }
 

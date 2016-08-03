@@ -61,9 +61,11 @@ export ZEPPELIN_LOCAL_DIR="LOCALDIRPREFIX/zeppelin"
 # e.g. --total-executor-cores 20 --executor-memory 16G
 # ZEPPELIN_SPARK_SUBMIT_OPTIONS=""
 
-# Set how Zeppelin should run
+# Set Zeppelin job for MAGPIE_JOB_TYPE = Zeppelin
 #
-# "server" - setup the server
+# "XXXtestzeppelinXXX" - Run a quick sanity test to see that zeppelin
+#             is setup correctly.  XXXTestzeppelinXXX will do
+#             XXXSOMETHINGXXX.
 #
-export ZEPPELIN_MODE="server"
+export ZEPPELIN_JOB="XXXtestzeppelinXXX"
 

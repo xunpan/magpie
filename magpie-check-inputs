@@ -896,9 +896,9 @@ then
 
     __Magpie_check_is_enabled "Spark" "Zeppelin"
 
-    if [ "${ZEPPELIN_MODE}" != "server" ]
+    if [ "${ZEPPELIN_JOB}" != "XXXtestzeppelinXXX" ]
     then
-        echo "ZEPPELIN_MODE must be set to server"
+        echo "ZEPPELIN_JOB must be set to server"
         exit 1
     fi
 fi

@@ -97,7 +97,7 @@ export MAGPIE_LOCAL_DIR="/tmp/${USER}/magpie"
 #
 # "kafka" - Run a job according to the settings of KAFKA_JOB.
 #
-# "zeppelin" - Run a job according to the settings of ZEPPELIN_MODE.
+# "zeppelin" - Run a job according to the settings of ZEPPELIN_JOB.
 #
 # "storm" - Run a job according to the settings of STORM_JOB.
 #
@@ -1779,11 +1779,13 @@ export ZEPPELIN_LOCAL_DIR="/tmp/${USER}/zeppelin"
 # e.g. --total-executor-cores 20 --executor-memory 16G
 # ZEPPELIN_SPARK_SUBMIT_OPTIONS=""
 
-# Set how Zeppelin should run
+# Set Zeppelin job for MAGPIE_JOB_TYPE = Zeppelin
 #
-# "server" - setup the server
+# "XXXtestzeppelinXXX" - Run a quick sanity test to see that zeppelin
+#             is setup correctly.  XXXTestzeppelinXXX will do
+#             XXXSOMETHINGXXX.
 #
-export ZEPPELIN_MODE="server"
+export ZEPPELIN_JOB="XXXtestzeppelinXXX"
 
 ############################################################################
 # Storm Core Configurations
