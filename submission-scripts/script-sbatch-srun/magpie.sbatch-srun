@@ -92,7 +92,7 @@ export MAGPIE_LOCAL_DIR="/tmp/${USER}/magpie"
 #
 # "kafka" - Run a job according to the settings of KAFKA_JOB.
 #
-# "zeppelin" - Run a job according to the settings of ZEPPELIN_MODE.
+# "zeppelin" - Run a job according to the settings of ZEPPELIN_JOB.
 #
 # "storm" - Run a job according to the settings of STORM_JOB.
 #
@@ -1763,7 +1763,7 @@ export ZEPPELIN_LOCAL_DIR="/tmp/${USER}/zeppelin"
 # "checkzeppelinup" - Run a simple script to ensure Zeppelin is setup
 #                     correctly and up.
 #
-export ZEPPELIN_MODE="checkzeppelinup"
+export ZEPPELIN_JOB="checkzeppelinup"
 
 # Path to the root scala dir
 #
@@ -1783,7 +1783,6 @@ export ZEPPELIN_MODE="checkzeppelinup"
 # e.g. --total-executor-cores 20 --executor-memory 16G
 #
 # export ZEPPELIN_SPARK_SUBMIT_OPTIONS=""
-
 ############################################################################
 # Storm Core Configurations
 ############################################################################
