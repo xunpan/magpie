@@ -380,7 +380,12 @@ Magpie_run_start_hadoop () {
         then
             if Magpie_hadoop_setup_type_enables_yarn
             then
-                ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh start historyserver
+                if echo ${HADOOP_VERSION} | grep -q -E "3\.[0-9]\.[0-9]"
+                then
+                    ${hadoopcmdprefix}/mapred --config "${HADOOP_CONF_DIR}" --daemon start historyserver
+                else
+                    ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh start historyserver
+                fi
             fi
         fi
 
@@ -470,7 +475,12 @@ Magpie_run_stop_hadoop () {
             if Magpie_hadoop_setup_type_enables_yarn
             then
                 ${hadoopsetupscriptprefix}/stop-yarn.sh
-                ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh stop historyserver
+                if echo ${HADOOP_VERSION} | grep -q -E "3\.[0-9]\.[0-9]"
+                then
+                    ${hadoopcmdprefix}/mapred --config "${HADOOP_CONF_DIR}" --daemon stop historyserver
+                else
+                    ${hadoopsetupscriptprefix}/mr-jobhistory-daemon.sh stop historyserver
+                fi
             fi
 
             # Make variables specific now within Magpie
