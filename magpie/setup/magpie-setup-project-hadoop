@@ -536,10 +536,10 @@ fi
 
 # Magpie_find_conffile will set the 'pre' filenames
 
-Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "core-site-2.X.xml" "pre_coresitexml"
-Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "mapred-site-2.X.xml" "pre_mapredsitexml"
-Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "hdfs-site-2.X.xml" "pre_hdfssitexml"
-Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "yarn-site-2.X.xml" "pre_yarnsitexml"
+Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "core-site-2.X-3.X.xml" "pre_coresitexml"
+Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "mapred-site-2.X-3.X.xml" "pre_mapredsitexml"
+Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "hdfs-site-2.X-3.X.xml" "pre_hdfssitexml"
+Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "yarn-site-2.X-3.X.xml" "pre_yarnsitexml"
 if echo ${HADOOP_VERSION} | grep -q -E "2\.[0-9]\.[0-9]"
 then
     Magpie_find_conffile "Hadoop" ${HADOOP_CONF_FILES:-""} "hadoop.log4j-2.X.properties" "pre_log4jproperties"
