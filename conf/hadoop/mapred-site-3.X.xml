@@ -7,7 +7,7 @@
 
 <property>
   <name>yarn.app.mapreduce.am.env</name>
-  <value>HADOOP_MAPRED_HOME=HADOOPHOME</value>
+  <value>HADOOP_MAPRED_HOME=HADOOPHOME,HADOOP_CONF_DIR=HADOOPCONFDIR</value>
   <description>User added environment variables for the MR App Master
   processes. Example :
   1) A=foo  This will set the env variable A to foo
@@ -17,7 +17,7 @@
 
 <property>
   <name>mapred.child.env</name>
-  <value>HADOOP_MAPRED_HOME=HADOOPHOME</value>
+  <value>HADOOP_MAPRED_HOME=HADOOPHOME,HADOOP_CONF_DIR=HADOOPCONFDIR</value>
   <description>User added environment variables for the task processes.
   Example :
   1) A=foo  This will set the env variable A to foo
