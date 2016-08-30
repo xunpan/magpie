@@ -234,6 +234,31 @@ export HADOOP_JOB="terasort"
 #
 # export HADOOP_TERASORT_RUN_TERAVALIDATE=no
 
+# TeraSort Erasure Coding
+#
+# If HADOOP_TERASORT_ERASURE_CODING is set to yes below, the teragen
+# created data terasorted output data will be stored in a directory
+# where erasure coding has been set.  Erasure coding is predominantly
+# poorer for terasort performance, but may be important if space is
+# more limited.
+#
+# This is only available in Hadoop 3.0 and newer versions.
+#
+# It is only available on HDFS type filesystems.
+#
+# Defaults to no 
+#
+# export HADOOP_TERASORT_ERASURE_CODING=no
+
+# TeraSort Erasure coding policy
+#
+# If HADOOP_TERASORT_ERASURE_CODING above is set to yes, use the
+# below to identify the erasure coding policy you wish to use.
+#
+# Defaults to RS-DEFAULT-6-3-64k
+#
+# export HADOOP_TERASORT_ERASURE_CODING_POLICY="RS-DEFAULT-6-3-64k"
+
 ############################################################################
 # Hadoop Decommission HDFS Nodes Configurations
 ############################################################################

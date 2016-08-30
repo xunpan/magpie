@@ -555,6 +555,7 @@ then
         __Magpie_check_if_set_is_yes_or_no "HADOOP_TERASORT_CLEAR_CACHE"
         __Magpie_check_if_set_is_yes_or_no "HADOOP_TERASORT_RUN_TERACHECKSUM"
         __Magpie_check_if_set_is_yes_or_no "HADOOP_TERASORT_RUN_TERAVALIDATE"
+        __Magpie_check_if_set_is_yes_or_no "HADOOP_TERASORT_ERASURE_CODING"
     fi
 
     __Magpie_check_if_set_is_yes_or_no "HADOOP_COMPRESSION"

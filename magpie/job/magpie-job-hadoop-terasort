@@ -41,6 +41,12 @@ else
     terasortsize=$HADOOP_TERASORT_SIZE
 fi
 
+if Magpie_hadoop_filesystem_mode_is_hdfs_type \
+    && [ "${HADOOP_TERASORT_ERASURE_CODING}" == "yes" ]
+then
+    pathprefix="terasortbenchmark/"
+fi
+
 if [ "${HADOOP_FILESYSTEM_MODE}" == "rawnetworkfs" ]
 then
     pathprefix="${HADOOP_RAWNETWORKFS_PATH}/"
@@ -64,27 +70,63 @@ cd ${HADOOP_HOME}
 # Remove previous runs if they are lingering
 #
 
-if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-teragen
+if Magpie_hadoop_filesystem_mode_is_hdfs_type \
+    && [ "${HADOOP_TERASORT_ERASURE_CODING}" == "yes" ]
 then
-    command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-teragen"
-    $command
+    if ${hadoopcmdprefix}/hadoop fs -ls | grep -q "terasortbenchmark"
+    then
+        command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}"
+        $command
+    fi
+else
+    if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-teragen
+    then
+        command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-teragen"
+        $command
+    fi
+
+    if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-sort
+    then
+        command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-sort"
+        $command
+    fi
+
+    if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-checksum
+    then
+        command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-checksum"
+        $command
+    fi
+
+    if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-validate
+    then
+        command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-validate"
+        $command
+    fi
 fi
 
-if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-sort
+if Magpie_hadoop_filesystem_mode_is_hdfs_type \
+    && [ "${HADOOP_TERASORT_ERASURE_CODING}" == "yes" ]
 then
-    command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-sort"
+    command="${hadoopcmdprefix}/hadoop fs -mkdir ${pathprefix}"
     $command
-fi
 
-if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-checksum
-then
-    command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-checksum"
-    $command
-fi
+    if [ "${HADOOP_TERASORT_ERASURE_CODING_POLICY}X" != "X" ]
+    then
+        erasurepolicies=`${hadoopcmdprefix}/hdfs erasurecode -listPolicies 2> /dev/null`
+        
+        if ! echo ${erasurepolicies} | grep -q "${HADOOP_TERASORT_ERASURE_CODING_POLICY}"
+        then
+            echo "Erasure encoding policy \"${HADOOP_TERASORT_ERASURE_CODING_POLICY}\" not available"
+            echo "Available policies = ${erasurepolicies}"
+            exit 1
+        fi
 
-if ${hadoopcmdprefix}/hadoop fs -ls ${pathprefix} | grep -q terasort-validate
-then
-    command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-validate"
+        erasurepolicy=${HADOOP_TERASORT_ERASURE_CODING_POLICY}
+    else
+        erasurepolicy="RS-DEFAULT-6-3-64k"
+    fi
+
+    command="${hadoopcmdprefix}/hdfs erasurecode -setPolicy -p ${erasurepolicy} ${pathprefix}"
     $command
 fi
 
@@ -262,6 +304,13 @@ fi
 if [ "${HADOOP_TERASORT_RUN_TERAVALIDATE}" == "yes" ]
 then
     command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}terasort-validate"
+    $command
+fi
+
+if Magpie_hadoop_filesystem_mode_is_hdfs_type \
+    && [ "${HADOOP_TERASORT_ERASURE_CODING}" == "yes" ]
+then
+    command="${hadoopcmdprefix}/hadoop fs -rm -r ${pathprefix}"
     $command
 fi
 
